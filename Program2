@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to check if the first number is lower
+bool isLower(int num1, int num2) {
+    return num1 < num2;
+}
+
+// Gets input for one region
+void getRegInfo(string& regionName, int& numAccidents) {
+    cout << "Enter the name of a region (Ex: North, South, West, East): ";
+    cin >> regionName;
+
+    cout << "Enter number of accidents in " << regionName << ": ";
+    cin >> numAccidents;
+
+    while (numAccidents < 0) {
+        cout << "Are we having some ressurections here? Please enter a valid value. ";
+        cin >> numAccidents;
+    }
+}
+
+// Displays the result
+void showLowest(string regionName, int numAccidents) {
+    cout << "\nThe safest region is " << regionName 
+         << " with " << numAccidents << " accidents.\n";
+}
+
+int main() {
+    string region1, region2, region3, region4, region5;
+    int acc1, acc2, acc3, acc4, acc5;
+
+    // Get data for each region
+    getRegInfo(region1, acc1);
+    getRegInfo(region2, acc2);
+    getRegInfo(region3, acc3);
+    getRegInfo(region4, acc4);
+    getRegInfo(region5, acc5);
+
+    // Start by assuming region1 is the safest
+    string safestRegion = region1;
+    int fewestAccidents = acc1;
+
+    if (isLower(acc2, fewestAccidents)) {
+        safestRegion = region2;
+        fewestAccidents = acc2;
+    }
+    if (isLower(acc3, fewestAccidents)) {
+        safestRegion = region3;
+        fewestAccidents = acc3;
+    }
+    if (isLower(acc4, fewestAccidents)) {
+        safestRegion = region4;
+        fewestAccidents = acc4;
+    }
+    if (isLower(acc5, fewestAccidents)) {
+        safestRegion = region5;
+        fewestAccidents = acc5;
+    }
+
+    showLowest(safestRegion, fewestAccidents);
+
+    return 0;
+}
