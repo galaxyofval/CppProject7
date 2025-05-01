@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+
+// Returns true if the first score is lower than the second
+bool isLower(double score1, double score2) {
+    return score1 < score2;
+}
+
+// Returns true if the first score is higher than the second
+bool isHigher(double score1, double score2) {
+    return score1 > score2;
+}
+
+// Gets one score from the user with input validation
+double getScore() {
+    double score;
+    cout << "Enter the judge's score from 0 to 10. (Fractional scores are supported.) ";
+    cin >> score;
+
+    while (score < 0.0 || score > 10.0) {
+        cout << "Invalid input. Please enter a score between 0 and 10: ";
+        cin >> score;
+    }
+
+    return score;
+}
+
+// Calculates average after dropping highest and lowest scores
+double calcAverage(double total, double minScore, double maxScore) {
+    return (total - minScore - maxScore) / 3.0;
+}
+
+int main() {
+    int judges = 5;
+    double score, total = 0.0, minScore, maxScore;
+
+    // Get first score
+    score = getScore();
+    total += score;
+    minScore = score;
+    maxScore = score;
+
+    // Get next 4 scores
+    for (int i = 1; i < judges; i++) {
+        score = getScore();
+        total += score;
+
+        if (isLower(score, minScore)) {
+            minScore = score;
+        }
+
+        if (isHigher(score, maxScore)) {
+            maxScore = score;
+        }
+    }
+
+    double average = calcAverage(total, minScore, maxScore);
+    cout << "\nThe performer's final average score is: " << average << endl;
+
+    return 0;
+}
