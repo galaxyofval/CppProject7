@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Convert the value given into Celsius, then return the value.
+double getCelsius(double f) {
+    return 5.0/9*(f - 32);
+}
+// It felt wrong doing just 0-20 Fahrenheit, please let me know if I misread it.
+
+int main() {
+    cout << "Temperatures from 0-212 degrees Fahrenheit \n";
+    for (int i = 0; i < 213; i++) {
+        cout << i << " F = " << getCelsius(i) << " C" << endl;
+    }
+
+    return 0;
+}
